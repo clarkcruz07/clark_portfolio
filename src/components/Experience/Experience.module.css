@@ -1,0 +1,47 @@
+.timeline {
+  display: grid;
+  gap: 0;
+  margin-top: 72px;
+  border-top: 1px solid currentColor;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: repeat(24, minmax(0, 1fr));
+  gap: 24px;
+  padding: 30px 0;
+  border-bottom: 1px solid currentColor;
+}
+
+.period {
+  grid-column: 1 / 6;
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.company {
+  grid-column: 8 / 18;
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.role {
+  grid-column: 19 / 25;
+  margin: 0;
+  align-self: end;
+}
+
+@media (max-width: 767px) {
+  .item {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .period,
+  .company,
+  .role {
+    grid-column: 1 / -1;
+  }
+}

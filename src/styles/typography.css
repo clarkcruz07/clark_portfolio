@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+.eyebrow {
+  font-size: clamp(0.78rem, 0.8vw, 0.95rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.display {
+  font-size: clamp(4rem, min(11vw, 17svh), 13rem);
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  font-weight: 900;
+}
+
+.section-title {
+  font-size: clamp(3rem, min(8vw, 13svh), 9rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  font-weight: 900;
+}
+
+.body-large {
+  font-size: clamp(1.1rem, min(1.7vw, 2.8svh), 1.85rem);
+  line-height: 1.25;
+}
+
+@media (max-height: 760px) and (min-width: 900px) {
+  .display {
+    font-size: clamp(3.8rem, min(9vw, 15svh), 9.5rem);
+    line-height: 0.9;
+  }
+
+  .section-title {
+    font-size: clamp(3rem, min(6.5vw, 11svh), 7.25rem);
+  }
+}
+
+.muted {
+  color: var(--gray-text);
+}

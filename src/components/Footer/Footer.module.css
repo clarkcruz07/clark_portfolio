@@ -1,0 +1,43 @@
+.footer {
+  display: flex;
+  align-items: end;
+}
+
+.title {
+  grid-column: 1 / 18;
+}
+
+.links {
+  grid-column: 18 / 25;
+  display: grid;
+  gap: 10px;
+  align-self: end;
+}
+
+.copyright {
+  grid-column: 1 / 12;
+  margin-top: 80px;
+}
+
+.top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 40;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  .title,
+  .links,
+  .copyright {
+    grid-column: 1 / -1;
+  }
+
+  .top {
+    right: 18px;
+    bottom: 86px;
+  }
+}

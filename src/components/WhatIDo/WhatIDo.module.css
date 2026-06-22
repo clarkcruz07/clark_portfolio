@@ -1,0 +1,151 @@
+.wrap {
+  min-height: 460vh;
+  background: var(--white);
+  color: var(--black);
+  isolation: isolate;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: clamp(92px, 12svh, 124px) 32px clamp(58px, 8svh, 78px);
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
+.title {
+  max-width: 1560px;
+  font-size: clamp(3rem, min(7vw, 10svh), 8rem);
+}
+
+.rail {
+  display: flex;
+  width: 500vw;
+  margin-top: clamp(20px, 4svh, 44px);
+  transition: transform 120ms linear;
+  will-change: transform;
+}
+
+.panel {
+  display: grid;
+  width: 100vw;
+  min-height: min(40svh, 460px);
+  grid-template-columns: repeat(24, minmax(0, 1fr));
+  gap: 24px;
+  padding: 0 32px;
+  align-content: center;
+  opacity: 0.28;
+  transform: scale(0.94);
+  transform-origin: center bottom;
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+.activePanel {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.number {
+  grid-column: 1 / 4;
+  color: var(--accent);
+  font-size: clamp(2rem, min(4.8vw, 8svh), 6.4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.copy {
+  grid-column: 8 / 22;
+}
+
+.copy h3 {
+  margin: 0 0 clamp(14px, 2svh, 24px);
+  font-size: clamp(2rem, min(4.2vw, 7.4svh), 5.6rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+@media (max-height: 760px) and (min-width: 900px) {
+  .sticky {
+    padding-top: 84px;
+    padding-bottom: 54px;
+  }
+
+  .title {
+    max-width: 1450px;
+    font-size: clamp(2.8rem, min(5.6vw, 8.4svh), 6.15rem);
+    line-height: 0.96;
+  }
+
+  .rail {
+    margin-top: 18px;
+  }
+
+  .panel {
+    min-height: 32svh;
+  }
+
+  .number {
+    font-size: clamp(2rem, min(4vw, 7svh), 4.8rem);
+  }
+
+  .copy h3 {
+    margin-bottom: 12px;
+    font-size: clamp(1.9rem, min(3.5vw, 6svh), 4rem);
+  }
+}
+
+.copy p {
+  max-width: 780px;
+  margin: 0 0 clamp(18px, 3svh, 30px);
+}
+
+@media (max-height: 760px) and (min-width: 900px) {
+  .copy p {
+    margin-bottom: 16px;
+    font-size: clamp(1rem, 1.25vw, 1.25rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .wrap {
+    min-height: auto;
+  }
+
+  .sticky {
+    position: relative;
+    display: block;
+    padding: 88px 18px 40px;
+  }
+
+  .rail {
+    display: grid;
+    width: auto;
+    gap: 56px;
+    transform: none !important;
+    transition: none;
+  }
+
+  .panel {
+    width: auto;
+    min-height: 45vh;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    padding: 0;
+    opacity: 1;
+    transform: none;
+  }
+
+  .number,
+  .copy {
+    grid-column: 1 / -1;
+  }
+}

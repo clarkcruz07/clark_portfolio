@@ -1,0 +1,136 @@
+.projects {
+  background: var(--black);
+  color: var(--white);
+  isolation: isolate;
+}
+
+.intro {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: 100svh;
+  padding: clamp(96px, 15svh, 176px) 32px clamp(40px, 6svh, 56px);
+  background: var(--black);
+}
+
+.introInner,
+.cardInner {
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
+.github {
+  position: sticky;
+  top: clamp(86px, 12svh, 112px);
+  z-index: 20;
+  margin-left: 32px;
+}
+
+.card {
+  position: sticky;
+  top: calc(var(--project-index) * 8px);
+  z-index: calc(5 + var(--project-index));
+  min-height: 100svh;
+  padding: clamp(92px, 12svh, 112px) 32px clamp(40px, 7svh, 64px);
+  background: var(--black);
+  color: var(--white);
+  border-top: 1px solid rgba(245, 245, 245, 0.18);
+  box-shadow: 0 -48px 90px rgba(0, 0, 0, 0.34);
+}
+
+.cardInner {
+  min-height: calc(100svh - clamp(150px, 19svh, 176px));
+  align-items: center;
+  transform-origin: center bottom;
+}
+
+.index {
+  grid-column: 1 / 4;
+  color: var(--accent);
+  font-size: clamp(2.5rem, 4vw, 5.75rem);
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.body {
+  grid-column: 7 / 22;
+}
+
+.body h3 {
+  max-width: 980px;
+  margin: 0 0 24px;
+  font-size: clamp(2.25rem, min(4.8vw, 9.5svh), 6.1rem);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+}
+
+.description {
+  max-width: 860px;
+  margin: 0 0 30px;
+  font-size: clamp(1.02rem, min(1.25vw, 2.4svh), 1.45rem);
+  line-height: 1.35;
+}
+
+.body > p:last-child {
+  margin: 26px 0 0;
+}
+
+@media (max-width: 767px) {
+  .intro,
+  .card {
+    padding: 88px 18px 40px;
+    top: 0;
+  }
+
+  .github {
+    top: 82px;
+    margin-left: 18px;
+  }
+
+  .index,
+  .body {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 900px) {
+  .body {
+    grid-column: 7 / 21;
+  }
+
+  .body h3 {
+    max-width: 860px;
+    margin-bottom: 18px;
+    font-size: clamp(2.1rem, min(4vw, 8svh), 4.9rem);
+  }
+
+  .description {
+    max-width: 760px;
+    margin-bottom: 22px;
+  }
+
+  .body > p:last-child {
+    margin-top: 18px;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .cardInner {
+    animation: projectCardReveal both ease-out;
+    animation-timeline: view();
+    animation-range: entry 0% cover 36%;
+  }
+}
+
+@keyframes projectCardReveal {
+  from {
+    opacity: 0.1;
+    transform: translateY(80px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

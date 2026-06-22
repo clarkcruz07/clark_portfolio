@@ -1,0 +1,23 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  background: var(--black);
+  transition: opacity 700ms ease, visibility 700ms ease;
+}
+
+.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.counter {
+  font-size: 38vw;
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  font-weight: 900;
+}
