@@ -90,47 +90,67 @@ export class ChatStore {
     this.error = null;
 
     try {
-      const conversationHistory = this.messages.slice(-10);
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model: 'llama3-70b-8192',
-          messages: [
-            { role: 'system', content: CLARK_SYSTEM_PROMPT },
-            ...conversationHistory,
-          ],
-          max_tokens: 500,
-          temperature: 0.7,
-          stream: false,
-        }),
-      });
+  const conversationHistory = this.messages.slice(-10);
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'system', content: CLARK_SYSTEM_PROMPT },
+        ...conversationHistory,
+      ],
+      max_tokens: 500,
+      temperature: 0.7,
+      stream: true,
+    }),
+  });
 
-      if (!response.ok) {
-        throw new Error('Groq request failed');
-      }
+  if (!response.ok) {
+    throw new Error('Groq request failed');
+  }
 
-      const data = await response.json();
-      const reply = data.choices?.[0]?.message?.content;
-      if (!reply) {
-        throw new Error('Groq response missing reply');
-      }
+  // ✅ Add the streaming reader here (replaces the old response.json() block)
+  const reader = response.body!.getReader();
+  const decoder = new TextDecoder();
+  let fullReply = '';
 
-      runInAction(() => {
-        this.messages.push({ role: 'assistant', content: reply });
-      });
-    } catch {
-      runInAction(() => {
-        this.error = 'Groq unavailable - email clark.cruz07@gmail.com';
-      });
-    } finally {
-      runInAction(() => {
-        this.isLoading = false;
-      });
+  runInAction(() => {
+    this.messages.push({ role: 'assistant', content: '' });
+  });
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    const chunk = decoder.decode(value, { stream: true });
+    const lines = chunk.split('\n').filter(l => l.startsWith('data: '));
+
+    for (const line of lines) {
+      const json = line.slice(6);
+      if (json === '[DONE]') break;
+      try {
+        const delta = JSON.parse(json).choices?.[0]?.delta?.content ?? '';
+        fullReply += delta;
+        runInAction(() => {
+          this.messages[this.messages.length - 1].content = fullReply;
+        });
+      } catch { /* skip malformed chunks */ }
     }
+  }
+
+} catch {
+  runInAction(() => {
+    this.error = 'Groq unavailable - email clark.cruz07@gmail.com';
+  });
+} finally {
+  runInAction(() => {
+    this.isLoading = false;
+  });
+}
   }
 
   clearChat() {

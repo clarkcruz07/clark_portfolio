@@ -10,6 +10,8 @@
   --theme-foreground: var(--white);
   --theme-foreground-inverted: var(--black);
   --grid-gap: 24px;
+  --fixed-bottom: 24px;
+  --fixed-right: 24px;
   color: var(--theme-foreground);
   background: var(--theme-background);
   font-family: 'Inter', system-ui, sans-serif;
@@ -34,10 +36,12 @@
 html {
   scroll-behavior: smooth;
   background: var(--theme-background);
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--theme-foreground);
   background: var(--theme-background);
   transition: background 500ms ease, color 500ms ease;
@@ -172,6 +176,11 @@ button {
 }
 
 @media (max-width: 767px) {
+  :root {
+    --fixed-bottom: max(18px, env(safe-area-inset-bottom));
+    --fixed-right: max(18px, env(safe-area-inset-right));
+  }
+
   .grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 16px;
@@ -181,7 +190,12 @@ button {
     padding: 88px 18px 40px;
   }
 
-  .btn {
+  .pinSection {
+    position: relative;
+    top: auto;
+  }
+
+  .sectionInner .btn {
     width: 100%;
   }
 }

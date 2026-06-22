@@ -21,8 +21,8 @@
 
 .top {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
+  right: var(--fixed-right);
+  bottom: var(--fixed-bottom);
   z-index: 40;
   width: 52px;
   height: 52px;
@@ -30,14 +30,24 @@
 }
 
 @media (max-width: 767px) {
-  .title,
-  .links,
+  .title {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .links {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 32px;
+  }
+
   .copyright {
     grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 48px;
   }
 
   .top {
-    right: 18px;
-    bottom: 86px;
+    bottom: calc(var(--fixed-bottom) + 72px);
   }
 }

@@ -9,7 +9,7 @@ export const Nav = observer(() => (
     </a>
     <div className={styles.links}>
       <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
+      <a href="#experience">Exp</a>
       <a href="#contact">
         Contact <ArrowUpRight size={14} aria-hidden="true" />
       </a>

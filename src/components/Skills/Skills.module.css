@@ -23,8 +23,13 @@
 }
 
 @media (max-width: 767px) {
+  .grid {
+    margin-top: 40px;
+  }
+
   .group {
     grid-column: 1 / -1;
+    grid-row: auto;
     min-height: auto;
   }
 }

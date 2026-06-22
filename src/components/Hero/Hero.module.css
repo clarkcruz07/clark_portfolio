@@ -68,14 +68,35 @@
 }
 
 @media (max-width: 767px) {
-  .content,
-  .oneLine,
-  .actions {
+  .hero {
+    align-items: flex-start;
+    padding-bottom: 110px;
+  }
+
+  .content {
     grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .oneLine {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 24px;
   }
 
   .actions {
+    grid-column: 1 / -1;
+    grid-row: 3;
     flex-direction: column;
     align-items: stretch;
+    margin-top: 24px;
+  }
+
+  .badge {
+    display: block;
+    max-width: 100%;
+    padding: 12px 14px;
+    font-size: 0.72rem;
+    line-height: 1.35;
   }
 }

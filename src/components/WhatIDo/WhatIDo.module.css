@@ -130,22 +130,27 @@
   .rail {
     display: grid;
     width: auto;
-    gap: 56px;
+    gap: 40px;
     transform: none !important;
     transition: none;
   }
 
   .panel {
     width: auto;
-    min-height: 45vh;
+    min-height: auto;
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    padding: 0;
+    padding: 0 0 8px;
     opacity: 1;
     transform: none;
   }
 
-  .number,
+  .number {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
   .copy {
     grid-column: 1 / -1;
+    grid-row: 2;
   }
 }

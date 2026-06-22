@@ -34,14 +34,29 @@
 }
 
 @media (max-width: 767px) {
+  .timeline {
+    margin-top: 40px;
+  }
+
   .item {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 10px;
+    padding: 22px 0;
   }
 
-  .period,
-  .company,
+  .period {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .company {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
   .role {
     grid-column: 1 / -1;
+    grid-row: 3;
+    align-self: start;
   }
 }

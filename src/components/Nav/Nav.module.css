@@ -1,13 +1,13 @@
 .nav {
   position: fixed;
-  top: 24px;
+  top: max(24px, env(safe-area-inset-top));
   left: 0;
   right: 0;
   z-index: 60;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 32px;
+  padding: 0 max(32px, env(safe-area-inset-right)) 0 max(32px, env(safe-area-inset-left));
   pointer-events: none;
 }
 
@@ -44,11 +44,21 @@
 
 @media (max-width: 767px) {
   .nav {
-    top: 14px;
-    padding: 0 14px;
+    top: max(14px, env(safe-area-inset-top));
+    padding: 0 max(14px, env(safe-area-inset-right)) 0 max(14px, env(safe-area-inset-left));
   }
 
-  .links a:not(:last-child) {
-    display: none;
+  .brand {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .links {
+    gap: 6px;
+  }
+
+  .links a {
+    padding: 10px 11px;
+    font-size: 0.72rem;
   }
 }

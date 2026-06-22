@@ -77,20 +77,39 @@
 }
 
 @media (max-width: 767px) {
-  .intro,
-  .card {
+  .intro {
+    position: relative;
+    min-height: auto;
     padding: 88px 18px 40px;
-    top: 0;
+  }
+
+  .card {
+    position: relative;
+    top: auto;
+    min-height: auto;
+    padding: 88px 18px 40px;
+    box-shadow: none;
+  }
+
+  .cardInner {
+    min-height: auto;
   }
 
   .github {
-    top: 82px;
-    margin-left: 18px;
+    position: relative;
+    top: auto;
+    width: auto;
+    margin: 0 18px 24px;
   }
 
-  .index,
+  .index {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
   .body {
     grid-column: 1 / -1;
+    grid-row: 2;
   }
 }
 

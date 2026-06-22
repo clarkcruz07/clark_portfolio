@@ -26,6 +26,22 @@
   line-height: 1.25;
 }
 
+@media (max-width: 767px) {
+  .display {
+    font-size: clamp(2.75rem, 12vw, 4rem);
+    line-height: 0.9;
+  }
+
+  .section-title {
+    font-size: clamp(2.25rem, 10vw, 3rem);
+    line-height: 0.94;
+  }
+
+  .body-large {
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+  }
+}
+
 @media (max-height: 760px) and (min-width: 900px) {
   .display {
     font-size: clamp(3.8rem, min(9vw, 15svh), 9.5rem);

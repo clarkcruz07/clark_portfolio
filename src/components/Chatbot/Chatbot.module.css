@@ -1,7 +1,7 @@
 .toggle {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
+  right: var(--fixed-right);
+  bottom: var(--fixed-bottom);
   z-index: 70;
   width: 64px;
   height: 64px;
@@ -12,8 +12,8 @@
 
 .panel {
   position: fixed;
-  right: 24px;
-  bottom: 100px;
+  right: var(--fixed-right);
+  bottom: calc(var(--fixed-bottom) + 76px);
   z-index: 70;
   display: flex;
   width: 380px;
@@ -169,13 +169,11 @@
 }
 
 @media (max-width: 767px) {
-  .toggle {
-    right: 18px;
-    bottom: 18px;
-  }
-
   .panel {
-    right: 18px;
-    bottom: 94px;
+    left: var(--fixed-right);
+    right: var(--fixed-right);
+    width: auto;
+    max-width: none;
+    max-height: min(70svh, 520px);
   }
 }
