@@ -37,8 +37,9 @@
   text-transform: uppercase;
 }
 
+.brand:hover,
 .links a:hover {
-  background: var(--green);
+  background: var(--accent-hover);
   color: var(--black);
 }
 

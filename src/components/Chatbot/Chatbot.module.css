@@ -8,6 +8,15 @@
   border: 1px solid var(--theme-foreground);
   background: var(--accent);
   color: var(--white);
+  transition: background 400ms ease-out, border-color 400ms ease-out;
+}
+
+.toggle:hover {
+  background: var(--accent-hover);
+}
+
+.toggle:active {
+  background: var(--accent-dark);
 }
 
 .panel {
@@ -56,6 +65,7 @@
   place-items: center;
   border: 1px solid var(--black);
   background: transparent;
+  transition: background 400ms ease-out, color 400ms ease-out, border-color 400ms ease-out;
 }
 
 .messages {
@@ -98,11 +108,20 @@
   background: transparent;
   font-size: 0.78rem;
   font-weight: 800;
+  transition: background 400ms ease-out, color 400ms ease-out, border-color 400ms ease-out;
 }
 
 .chip:hover,
 .iconBtn:hover {
-  background: var(--black);
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+  color: var(--black);
+}
+
+.chip:active,
+.iconBtn:active {
+  border-color: var(--accent-dark);
+  background: var(--accent-dark);
   color: var(--white);
 }
 
@@ -136,6 +155,15 @@
   border-left: 1px solid var(--black);
   background: var(--black);
   color: var(--white);
+  transition: background 400ms ease-out;
+}
+
+.send:hover {
+  background: var(--accent);
+}
+
+.send:active {
+  background: var(--accent-dark);
 }
 
 .dots {
