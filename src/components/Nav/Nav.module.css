@@ -45,7 +45,7 @@
 
 @media (max-width: 767px) {
   .nav {
-    top: max(14px, env(safe-area-inset-top));
+    top: env(safe-area-inset-top);
     padding: 0 max(14px, env(safe-area-inset-right)) 0 max(14px, env(safe-area-inset-left));
   }
 
