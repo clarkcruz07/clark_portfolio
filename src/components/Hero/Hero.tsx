@@ -3,11 +3,13 @@ import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { useStore } from '../../stores/RootStore';
+import { GlobeBackground } from './GlobeBackground';
 import styles from './Hero.module.css';
 
 export const Hero = observer(() => {
   const ref = useRef<HTMLElement>(null);
   const { uiStore } = useStore();
+  const globeProgress = Math.min(1, Math.max(0, uiStore.scrollProgress / 0.2));
 
   useIntersectionObserver({
     id: 'hero',
@@ -21,8 +23,11 @@ export const Hero = observer(() => {
 
   return (
     <section id="hero" ref={ref} className={`section pinSection themeBlack ${styles.hero}`}>
+      <div className={styles.background} aria-hidden="true">
+        <GlobeBackground progress={globeProgress} />
+      </div>
       <div className="sectionInner grid">
-        <div className={styles.content}>
+        <div className={styles.content + ' content'}>
           <h1 className="display reveal">
             <span>Clark Terence Cruz</span>
           </h1>

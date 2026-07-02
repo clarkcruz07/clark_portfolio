@@ -85,9 +85,11 @@ export const Chatbot = observer(() => {
           </button>
         </form>
       </section>
-      <button className={styles.toggle} onClick={() => uiStore.toggleChat()} aria-label="Toggle Ask Clark" title="Ask Clark">
-        <MessageCircle size={26} />
-      </button>
+      {!uiStore.chatOpen && (
+        <button className={styles.toggle} onClick={() => uiStore.toggleChat()} aria-label="Toggle Ask Clark" title="Ask Clark">
+          <MessageCircle size={26} />
+        </button>
+      )}
     </>
   );
 });

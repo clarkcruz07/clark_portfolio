@@ -2,6 +2,50 @@
   display: flex;
   min-height: 100svh;
   align-items: center;
+  isolation: isolate;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 68% 38%, rgba(156, 102, 64, 0.18), transparent 30%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04), transparent 45%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.08), rgba(10, 10, 10, 0.5));
+  z-index: 1;
+}
+
+.globeCanvas {
+  position: absolute;
+  inset: -2% -8% -8% 18%;
+  z-index: 0;
+  opacity: 0.96;
+  transform: scale(var(--globe-scale, 1));
+  transform-origin: center center;
+}
+
+.globeFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.content,
+.oneLine,
+.actions {
+  position: relative;
+  z-index: 2;
 }
 
 .content {
@@ -70,12 +114,32 @@
 @media (max-width: 767px) {
   .hero {
     align-items: flex-start;
-    padding-bottom: 110px;
+    padding-bottom: 56px;
+  }
+
+  .globeCanvas {
+    top: 12px;
+    left: 50%;
+    width: min(92vw, 420px);
+    aspect-ratio: 1;
+    height: auto;
+    right: auto;
+    bottom: auto;
+    transform: translateX(-50%) scale(var(--globe-scale, 1));
+    opacity: 0.82;
+  }
+
+  .background::before {
+    background:
+      radial-gradient(circle at 50% 28%, rgba(156, 102, 64, 0.18), transparent 30%),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04), transparent 45%),
+      linear-gradient(180deg, rgba(10, 10, 10, 0.04), rgba(10, 10, 10, 0.52));
   }
 
   .content {
     grid-column: 1 / -1;
     grid-row: 1;
+    margin-top: min(72vw, 360px);
   }
 
   .oneLine {
@@ -89,7 +153,7 @@
     grid-row: 3;
     flex-direction: column;
     align-items: stretch;
-    margin-top: 24px;
+    margin-top: 20px;
   }
 
   .badge {
